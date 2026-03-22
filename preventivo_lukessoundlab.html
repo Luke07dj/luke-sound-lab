@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richiedi Preventivo Gratuito — Luke's Sound Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'DM Sans',sans-serif;background:#0A0A0A;color:#f0f0ee;padding:2rem 1rem}
+        .topbar{max-width:700px;margin:0 auto;padding:1.2rem 0 0;display:flex;align-items:center}
+        .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#555;text-decoration:none;border:1px solid #2a2a2a;border-radius:6px;padding:6px 14px;transition:color 0.2s,border-color 0.2s}
+        .back-btn:hover{color:#f0f0ee;border-color:#444}
+        .wrap{max-width:700px;margin:0 auto;padding:2rem 0}
+        .header{text-align:center;margin-bottom:2.5rem}
+        .header h1{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:4px;color:#f0f0ee;font-weight:400}
+        .header p{font-size:13px;color:#666;margin-top:6px;letter-spacing:2px;text-transform:uppercase}
+        .pacchetto-badge{display:inline-block;background:#3C348933;color:#7F77DD;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:6px 16px;border-radius:6px;margin-bottom:2rem;border:1px solid #7F77DD44}
+        .form-card{background:#222;border:1px solid #2a2a2a;border-radius:12px;padding:28px 32px;margin-bottom:16px}
+        .form-section-title{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#444;margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid #2a2a2a}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+        .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+        .form-group:last-child{margin-bottom:0}
+        label{font-size:12px;color:#555;letter-spacing:0.5px}
+        input,textarea,select{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:12px 14px;font-size:14px;color:#f0f0ee;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;width:100%}
+        input:focus,textarea:focus,select:focus{border-color:#555}
+        select option{background:#1a1a1a}
+        textarea{resize:vertical;min-height:100px}
+        .send-btn{display:block;width:100%;text-align:center;background:#7F77DD;color:#fff;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:16px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s;font-family:'DM Sans',sans-serif;margin-top:8px}
+        .send-btn:hover{background:#6c64c9}
+        .note{font-size:12px;color:#444;text-align:center;margin-top:12px;line-height:1.6}
+        .success-box{display:none;background:#27500A22;border:1px solid #63992244;border-radius:12px;padding:28px 32px;text-align:center}
+        .success-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:#639922;font-weight:400;margin-bottom:8px}
+        .success-text{font-size:14px;color:#888;line-height:1.7}
+        .footer{text-align:center;margin-top:2rem;font-size:12px;color:#444;letter-spacing:1px}
+        @media(max-width:600px){.form-row{grid-template-columns:1fr}}
+
+        .badge-blue { background: #378ADD !important; color: #FFFFFF !important; border-color: #378ADD !important; }
+        .badge-purple { background: #7F77DD !important; color: #FFFFFF!important; border-color: #7F77DD !important; }
+        .badge-amber { background: #EF9F27 !important; color: #FFFFFF !important; border-color: #EF9F27 !important; }
+
+        .btn-blue { background: #378ADD !important; }
+        .btn-blue:hover { background: #2E72B6 !important; }
+        .btn-purple { background: #7F77DD !important; }
+        .btn-purple:hover { background: #6c64c9 !important; }
+        .btn-amber { background: #EF9F27 !important; }
+        .btn-amber:hover { background: #947000 !important; }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="pacchetti_lukessoundlab.html" class="back-btn">← Pacchetti</a>
+</div>
+
+<div class="wrap">
+    <div class="header">
+        <h1>Richiedi Preventivo Gratuito</h1>
+        <p>Luke's Sound Lab · Compila il modulo</p>
+    </div>
+
+    <div style="text-align:center; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <div class="pacchetto-badge" id="badge-pacchetto">Pacchetto selezionato</div>
+        <div class="pacchetto-badge" id="badge-mic" style="background: #222; color: #aaa; border-color: #333; margin-bottom: 2rem; text-transform: none;">
+            <strong style="color: #fff; text-transform: uppercase; font-size: 10px; margin-right: 5px;">Opzione selezionata:</strong> 
+            <span id="testo-mic">Caricamento...</span>
+        </div>
+    </div>
+
+    <form id="form-preventivo">
+        <!-- Campi nascosti aggiornati dallo script -->
+        <input type="hidden" name="pacchetto_scelto" id="input-pacchetto" value="">
+        <input type="hidden" name="config_microfoni" id="input-mic" value="">
+
+        <div class="form-card">
+            <div class="form-section-title">I tuoi dati</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nome e cognome *</label>
+                    <input type="text" name="Nome" placeholder="Es. Mario Rossi" required>
+                </div>
+                <div class="form-group">
+                    <label>Numero di telefono *</label>
+                    <input type="tel" name="Telefono" placeholder="Es. 349 000 0000" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="Email" placeholder="Es. mario@email.com" required>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <div class="form-section-title">Dettagli dell'evento</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Data dell'evento *</label>
+                    <input type="date" name="Data evento" min="2026-01-01" required>
+                </div>
+                <div class="form-group">
+                    <label>Orario di inizio *</label>
+                    <input type="time" name="Orario di inizio" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Numero di persone previste *</label>
+                    <select name="Persone" required>
+                        <option value="" disabled selected>Seleziona...</option>
+                        <option>Meno di 30</option>
+                        <option>30 – 50</option>
+                        <option>50 – 80</option>
+                        <option>80 – 100</option>
+                        <option>Più di 100</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tipo di spazio *</label>
+                    <select name="Tipo di spazio" required>
+                        <option value="" disabled selected>Seleziona...</option>
+                        <option>Interno (sala, locale)</option>
+                        <option>Esterno (giardino, terrazza)</option>
+                        <option>Misto interno/esterno</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Dimensione approssimativa</label>
+                    <select name="Dimensione">
+                        <option value="" disabled selected>Seleziona...</option>
+                        <option>Piccola (fino a 50 mq)</option>
+                        <option>Media (50 – 150 mq)</option>
+                        <option>Grande (oltre 150 mq)</option>
+                        <option>Non lo so</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Indirizzo o zona dell'evento *</label>
+                <input type="text" name="Indirizzo" placeholder="Es. Via Roma 1, Perugia — o solo la città" required>
+            </div>
+            <div class="form-group">
+                <label>Note aggiuntive</label>
+                <textarea name="Note aggiuntive" placeholder="Descrivi liberamente l'evento..."></textarea>
+            </div>
+        </div>
+
+        <button type="submit" class="send-btn" id="submit-btn">Invia richiesta di preventivo →</button>
+        <p class="note">Riceverai una mail di conferma all'indirizzo indicato.</p>
+    </form>
+
+    <div class="success-box" id="success-box">
+        <div class="success-title">Richiesta inviata!</div>
+        <div class="success-text">Grazie per aver contattato Luke's Sound Lab.<br>Ti risponderemo al più presto.</div>
+    </div>
+
+    <div class="footer">Luke's Sound Lab · Centro Italia</div>
+</div>
+
+<script type="text/javascript">
+const campoDataEvento = document.querySelector('input[name="Data evento"]');
+if (campoDataEvento) {
+    const oggi = new Date().toISOString().split('T')[0];
+    campoDataEvento.min = oggi; // Imposta "oggi" come data minima cliccabile
+}
+
+document.getElementById('form-preventivo').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const emailV = document.querySelector('input[name="Email"]').value;
+    const telV = document.querySelector('input[name="Telefono"]').value;
+
+    // Espressioni regolari per il controllo
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regexTel = /^[0-9\s\+]{9,15}$/; // Accetta numeri, spazi e il +
+
+    if (!regexEmail.test(emailV)) {
+        alert("⚠️ Inserisci un indirizzo email valido (es: nome@esempio.com)");
+        return; // Blocca tutto
+    }
+    
+    if (!regexTel.test(telV)) {
+        alert("⚠️ Inserisci un numero di telefono valido (almeno 9 cifre)");
+        return; // Blocca tutto
+    }
+
+    // Se i controlli sono OK, qui prosegue il tuo codice EmailJS...
+    btnInvia.disabled = true;
+    btnInvia.textContent = "Invio in corso...";
+    // ... restanti istruzioni emailjs.send ...
+
+// 1. Inizializzazione dati da URL
+const urlParams = new URLSearchParams(window.location.search);
+const pacchettoNome = decodeURIComponent(urlParams.get('pacchetto') || 'Non specificato');
+const micNome = decodeURIComponent(urlParams.get('mic') || 'Nessuna opzione selezionata');
+
+// Riferimenti UI
+const badgeP = document.getElementById('badge-pacchetto');
+const spanMic = document.getElementById('testo-mic');
+const btnInvia = document.getElementById('submit-btn');
+
+badgeP.textContent = pacchettoNome;
+spanMic.textContent = micNome;
+
+// Colori dinamici
+if (pacchettoNome.includes("Business")) { badgeP.classList.add('badge-blue'); btnInvia.classList.add('btn-blue'); }
+else if (pacchettoNome.includes("Party")) { badgeP.classList.add('badge-purple'); btnInvia.classList.add('btn-purple'); }
+else if (pacchettoNome.includes("Karaoke")) { badgeP.classList.add('badge-amber'); btnInvia.classList.add('btn-amber'); }
+
+// 2. EmailJS Config
+(function() {
+    emailjs.init("lPw0foJ6k8bHkMYCw"); 
+})();
+
+// 3. Logica Invio
+document.getElementById('form-preventivo').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    btnInvia.disabled = true;
+    btnInvia.textContent = "Invio in corso...";
+
+    // Raccolta dati dinamica
+    const nomeCliente = document.querySelector('input[name="Nome"]').value;
+    const emailCliente = document.querySelector('input[name="Email"]').value;
+    const telCliente = document.querySelector('input[name="Telefono"]').value;
+    const dataE = document.querySelector('input[name="Data evento"]').value;
+    const nPersone = document.querySelector('select[name="Persone"]').value;
+    const tSpazio = document.querySelector('select[name="Tipo di spazio"]').value;
+	const oraInizio = document.querySelector('input[name="Orario di inizio"]').value;
+    const addr = document.querySelector('input[name="Indirizzo"]').value;
+    const noteExtra = document.querySelector('textarea[name="Note aggiuntive"]').value || 'Nessuna nota';
+
+    // Preparazione parametri per Template Universale
+    const templateParams = {
+        tipo_messaggio: "RICHIESTA PREVENTIVO",
+        Nome: nomeCliente,
+        Email: emailCliente,
+        Telefono: telCliente,
+		"Data evento": dataE,
+        // Stringa riepilogativa per {{dettagli_richiesta}}
+		dettagli_richiesta: `📦 Pacchetto: ${pacchettoNome}
+							 🎙️ Opzione: ${micNome}
+							 📅 Data dell'evento: ${dataE}
+							 ⏰ Orario di inizio: ${oraInizio}
+							 👥 Numero di Persone previste: ${nPersone}
+							 🏠 Tipo di Spazio: ${tSpazio}
+							 📍 Località: ${addr}`,
+        Note: noteExtra
+    };
+
+    const SERVICE_ID = 'service_p7a1yzs'; 
+    const TEMPLATE_PER_TE = 'template_hg8fklp'; 
+    const TEMPLATE_PER_CLIENTE = 'template_b2267lp'; 
+
+    // Doppio invio
+    emailjs.send(SERVICE_ID, TEMPLATE_PER_TE, templateParams)
+        .then(function() {
+            return emailjs.send(SERVICE_ID, TEMPLATE_PER_CLIENTE, templateParams);
+        })
+        .then(function() {
+            document.getElementById('form-preventivo').style.display = 'none';
+            document.querySelector('.header').style.display = 'none'; 
+            document.getElementById('badge-pacchetto').parentElement.style.display = 'none'; 
+            document.getElementById('success-box').style.display = 'block';
+            window.scrollTo(0,0);
+        }, function(error) {
+            alert('Errore nell\'invio. Riprova.');
+            console.error('EmailJS Error:', error);
+            btnInvia.disabled = false;
+            btnInvia.textContent = "Invia richiesta di preventivo →";
+        });
+});
+
+const oggi = new Date().toISOString().split('T')[0];
+const campoData = document.getElementById('Data evento');
+if (campoData) {
+    campoData.min = oggi;
+}
+
+// Validazione Email extra al momento dell'invio
+const emailInput = document.querySelector('input[name="Email"]');
+emailInput.addEventListener('input', function() {
+    if (emailInput.validity.typeMismatch) {
+        emailInput.setCustomValidity("Per favore, inserisci un indirizzo email valido.");
+    } else {
+        emailInput.setCustomValidity("");
+    }
+});
+</script>
+
+</body>
+</html>

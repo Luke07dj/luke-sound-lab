@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Il Nostro Impianto — Luke's Sound Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#0A0A0A;color:#f0f0ee;padding:2rem 1rem}
+.wrap{max-width:1000px;margin:0 auto;padding:2rem 0}
+.header{text-align:center;margin-bottom:3rem}
+.header h1{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:4px;color:#f0f0ee;font-weight:400}
+.header p{font-size:13px;color:#666;margin-top:6px;letter-spacing:2px;text-transform:uppercase}
+.category{margin-bottom:2.5rem}
+.category-title{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #2a2a2a}
+.components{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.components.single{grid-template-columns:1fr}
+.comp{background:#222;border-radius:10px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start;border:1px solid #2a2a2a}
+.comp-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.ic-blue{background:#0C447C22;border:1px solid #378ADD44}
+.ic-purple{background:#3C348922;border:1px solid #7F77DD44}
+.ic-amber{background:#63380622;border:1px solid #EF9F2744}
+.ic-green{background:#27500A22;border:1px solid #63992244}
+.ic-gray{background:#2a2a2a;border:1px solid #333}
+.comp-body{flex:1;min-width:0}
+.comp-name{font-size:14px;font-weight:500;color:#f0f0ee;margin-bottom:2px}
+.comp-model{font-size:11px;color:#555;margin-bottom:8px;letter-spacing:0.5px}
+.comp-desc{font-size:13px;color:#888;line-height:1.6;margin-bottom:10px}
+.specs{display:flex;flex-wrap:wrap;gap:6px}
+.spec{font-size:11px;background:#2a2a2a;border:1px solid #333;border-radius:4px;padding:3px 8px;color:#666}
+.qty{display:inline-block;font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle}
+.qty-blue{background:#0C447C33;color:#378ADD}
+.qty-purple{background:#3C348933;color:#7F77DD}
+.qty-amber{background:#63380633;color:#EF9F27}
+.qty-gray{background:#2a2a2a;color:#666}
+.footer-note{text-align:center;margin-top:3rem;font-size:12px;color:#444;letter-spacing:1px}
+@media(max-width:640px){.components{grid-template-columns:1fr}}
+.topbar{max-width:1000px;margin:0 auto;padding:1.2rem 0 0;display:flex;align-items:center}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#555;text-decoration:none;border:1px solid #2a2a2a;border-radius:6px;padding:6px 14px;transition:color 0.2s,border-color 0.2s}
+.back-btn:hover{color:#f0f0ee;border-color:#444}
+.contacts{margin-top:2.5rem;background:#222;border:1px solid #2a2a2a;border-radius:12px;padding:22px 28px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.contact-item .contact-label{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#444;margin-bottom:2px}
+.contact-item .contact-val{font-size:14px;color:#ccc;font-weight:500}
+.contact-item .contact-val a{color:#ccc;text-decoration:none}
+.contact-item .contact-val a:hover{color:#f0f0ee}
+.social-card{margin-top:2rem;background:#222;border:1px solid #2a2a2a;border-radius:12px;padding:20px 24px}
+.social-title{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#444;margin-bottom:14px}
+.social-row{display:flex;gap:12px;flex-wrap:wrap}
+.social-btn{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 18px;text-decoration:none;color:#888;font-size:13px;font-weight:500;transition:border-color 0.2s,color 0.2s;flex:1;justify-content:center}
+.social-btn1{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 18px;text-decoration:none;color:#888;font-size:13px;font-weight:500;transition:border-color 0.2s,color 0.2s;flex:1;justify-content:center}
+.social-btn2{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 18px;text-decoration:none;color:#888;font-size:13px;font-weight:500;transition:border-color 0.2s,color 0.2s;flex:1;justify-content:center}
+.social-btn:hover{color:#833AB4;border-color:#833AB4}
+.social-btn1:hover{color:#1877F2;border-color:#1877F2}
+.social-btn2:hover{color:#EE1D52;border-color:#EE1D52}
+.social-btn svg{flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="index_lukessoundlab.html" class="back-btn">← Home</a>
+</div>
+<div class="wrap">
+
+  <div class="header">
+    <h1>Il Nostro Impianto</h1>
+    <p>Luke's Sound Lab · Ogni componente scelto con cura</p>
+  </div>
+
+  <!-- DIFFUSIONE -->
+  <div class="category">
+    <div class="category-title">Diffusione audio</div>
+    <div class="components">
+
+      <div class="comp">
+        <div class="comp-icon ic-blue">🔊</div>
+        <div class="comp-body">
+          <div class="comp-name">Casse PA <span class="qty qty-blue">×2</span></div>
+          <div class="comp-model">Audibax PRO8P</div>
+          <div class="comp-desc">Casse passive da PA con woofer da 8". Montate su stativi regolabili per adattarsi a qualsiasi ambiente e indirizzare il suono verso il pubblico.</div>
+          <div class="specs">
+            <span class="spec">200W RMS</span>
+            <span class="spec">Woofer 8"</span>
+            <span class="spec">Su stativi Neo 130</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-icon ic-purple">⚡</div>
+        <div class="comp-body">
+          <div class="comp-name">Amplificatore</div>
+          <div class="comp-model">Ibiza AMP600-MKII</div>
+          <div class="comp-desc">Amplificatore stereo di potenza che pilota le casse con segnale pulito e stabile, con ampio margine dinamico per gestire i picchi senza distorsione.</div>
+          <div class="specs">
+            <span class="spec">2×320W a 8Ω</span>
+            <span class="spec">2×480W a 4Ω</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-icon ic-amber">🔉</div>
+        <div class="comp-body">
+          <div class="comp-name">Subwoofer <span class="qty qty-amber">Pacchetti 02 · 03</span></div>
+          <div class="comp-model">Infinity BU80 + Fosi Audio M04</div>
+          <div class="comp-desc">Subwoofer modificato per uso PA, gestito da un amplificatore dedicato. Aggiunge profondità e corpo alle basse frequenze per feste e karaoke.</div>
+          <div class="specs">
+            <span class="spec">Woofer 8"</span>
+            <span class="spec">Amp. dedicato Fosi M04</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTROLLO -->
+  <div class="category">
+    <div class="category-title">Controllo e mixaggio</div>
+    <div class="components single">
+
+      <div class="comp">
+        <div class="comp-icon ic-purple">🎚️</div>
+        <div class="comp-body">
+          <div class="comp-name">Mixer audio</div>
+          <div class="comp-model">Behringer Xenyx X1204USB</div>
+          <div class="comp-desc">Mixer professionale analogico con 4 canali mono per microfoni e 2 canali stereo per sorgenti audio. Equalizzatore a 3 bande per canale, effetti integrati e interfaccia USB per registrazione diretta. Gestisce l'intero mix della serata con precisione.</div>
+          <div class="specs">
+            <span class="spec">4 canali mono (mic)</span>
+            <span class="spec">2 canali stereo</span>
+            <span class="spec">EQ 3 bande</span>
+            <span class="spec">Effetti integrati</span>
+            <span class="spec">Uscite XLR bilanciate</span>
+            <span class="spec">USB</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SORGENTI -->
+  <div class="category">
+    <div class="category-title">Ingressi audio</div>
+    <div class="components">
+
+      <div class="comp">
+        <div class="comp-icon ic-blue">📶</div>
+        <div class="comp-body">
+          <div class="comp-name">Ricevitore Bluetooth</div>
+          <div class="comp-model">1Mii B06S+</div>
+          <div class="comp-desc">Permette di connettere qualsiasi smartphone, tablet o laptop in modalità wireless al mixer. Supporta i codec LDAC, aptX e AAC per una qualità audio superiore rispetto al Bluetooth standard. Adatto esclusivamente per la riproduzione musicale — la latenza Bluetooth non è adatta ad applicazioni che richiedono sincronizzazione audio-video precisa.</div>
+          <div class="specs">
+            <span class="spec">Bluetooth 5.2</span>
+            <span class="spec">LDAC / aptX / AAC</span>
+			<span class="spec">Portata 30m</span></span>
+            <span class="spec">Solo per musica</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-icon ic-gray">🔌</div>
+        <div class="comp-body">
+          <div class="comp-name">Ingresso ausiliario</div>
+          <div class="comp-model">Cavo 2x RCA → jack 3,5mm </div>
+          <div class="comp-desc">Collegamento cablato per telefono, tablet, laptop o qualsiasi dispositivo con uscita jack. Alternativa al Bluetooth per chi preferisce la connessione fisica.</div>
+          <div class="specs">
+            <span class="spec">Jack 3,5mm maschio</span>
+            <span class="spec">Canale stereo dedicato</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MICROFONI -->
+  <div class="category">
+    <div class="category-title">Microfoni</div>
+    <div class="components">
+
+      <div class="comp">
+        <div class="comp-icon ic-green">🎤</div>
+        <div class="comp-body">
+          <div class="comp-name">Microfoni wireless <span class="qty qty-gray">×4</span></div>
+          <div class="comp-model">Tonor TW840</div>
+          <div class="comp-desc">Sistema wireless UHF con 4 microfoni dinamici a corpo metallico. Robusto e affidabile, ideale per l'uso intenso da noleggio. Segnale stabile grazie alle 4 antenne e alle 5 frequenze selezionabili per microfono, che riducono il rischio di interferenze anche in ambienti affollati. Adatti per voce parlata, canto e karaoke.</div>
+          <div class="specs">
+            <span class="spec">UHF wireless</span>
+            <span class="spec">40Hz – 18kHz</span>
+			<span class="spec">Portata 90m</span>
+            <span class="spec">4 canali simultanei</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-icon ic-blue">🎙️</div>
+        <div class="comp-body">
+          <div class="comp-name">Microfono a filo</div>
+          <div class="comp-model">Sennheiser e815s</div>
+          <div class="comp-desc">Microfono dinamico cardioide cablato di qualità professionale. Voce chiara e naturale, costruzione robusta. Ideale per relatori a podio fisso in conferenze e presentazioni dove la chiarezza della parola è prioritaria.</div>
+          <div class="specs">
+            <span class="spec">Dinamico cardioide</span>
+            <span class="spec">XLR bilanciato</span>
+            <span class="spec">80Hz – 15kHz</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="social-card">
+    <div class="social-title">Seguici sui social</div>
+    <div class="social-row">
+      <a href="https://www.instagram.com/lukes_sound_lab/" class="social-btn" target="blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578509017839" class="social-btn1" target="blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        Facebook
+      </a>
+      <a href="https://www.tiktok.com/@lukes_sound_lab" class="social-btn2" target="blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+        TikTok
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

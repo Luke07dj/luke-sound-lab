@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copertura e Limiti — Luke's Sound Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#0A0A0A;color:#f0f0ee;padding:2rem 1rem}
+.wrap{max-width:900px;margin:0 auto;padding:2rem 0}
+.header{text-align:center;margin-bottom:3rem}
+.header h1{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:4px;color:#f0f0ee;font-weight:400}
+.header p{font-size:13px;color:#666;margin-top:6px;letter-spacing:2px;text-transform:uppercase}
+.intro{font-size:15px;color:#888;line-height:1.8;text-align:center;max-width:600px;margin:0 auto 3rem}
+
+.section{margin-bottom:2.5rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #2a2a2a}
+
+.tiers{display:flex;flex-direction:column;gap:10px}
+.tier{background:#222;border:1px solid #2a2a2a;border-radius:10px;padding:18px 22px;display:flex;align-items:flex-start;gap:16px}
+.tier-indicator{flex-shrink:0;width:10px;height:10px;border-radius:50%;margin-top:5px}
+.ind-green{background:#639922}
+.ind-amber{background:#EF9F27}
+.ind-red{background:#E24B4A}
+.tier-body{}
+.tier-range{font-size:14px;font-weight:500;color:#f0f0ee;margin-bottom:6px}
+.tier-desc{font-size:13px;color:#888;line-height:1.6}
+.tier-sub{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.sub-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#888;line-height:1.5}
+.sub-label{font-weight:500;color:#ccc;white-space:nowrap;min-width:200px}
+
+.warning-box{background:#63380615;border:1px solid #EF9F2733;border-radius:10px;padding:20px 24px;margin-bottom:2.5rem}
+.warning-title{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#EF9F27;margin-bottom:10px}
+.warning-text{font-size:13px;color:#888;line-height:1.7}
+
+.cta-box{background:#222;border:1px solid #2a2a2a;border-radius:12px;padding:28px 32px;text-align:center}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#f0f0ee;margin-bottom:8px;font-weight:400}
+.cta-desc{font-size:14px;color:#666;line-height:1.7;max-width:500px;margin:0 auto}
+
+.legend{display:flex;gap:20px;justify-content:center;margin-bottom:1.5rem}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#666}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+.footer-note{text-align:center;margin-top:3rem;font-size:12px;color:#444;letter-spacing:1px}
+.topbar{max-width:900px;margin:0 auto;padding:1.2rem 0 0;display:flex;align-items:center}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#555;text-decoration:none;border:1px solid #2a2a2a;border-radius:6px;padding:6px 14px;transition:color 0.2s,border-color 0.2s}
+.back-btn:hover{color:#f0f0ee;border-color:#444}
+.contacts{margin-top:2rem;background:#222;border:1px solid #2a2a2a;border-radius:12px;padding:22px 28px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.contact-item .contact-label{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#444;margin-bottom:2px}
+.contact-item .contact-val{font-size:14px;color:#ccc;font-weight:500}
+.contact-item .contact-val a{color:#ccc;text-decoration:none}
+.contact-item .contact-val a:hover{color:#f0f0ee}
+@media(max-width:640px){.sub-label{min-width:120px}}
+.social-card{margin-top:2rem;background:#222;border:1px solid #2a2a2a;border-radius:12px;padding:20px 24px}
+.social-title{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#444;margin-bottom:14px}
+.social-row{display:flex;gap:12px;flex-wrap:wrap}
+.social-btn{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 18px;text-decoration:none;color:#888;font-size:13px;font-weight:500;transition:border-color 0.2s,color 0.2s;flex:1;justify-content:center}
+.social-btn1{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 18px;text-decoration:none;color:#888;font-size:13px;font-weight:500;transition:border-color 0.2s,color 0.2s;flex:1;justify-content:center}
+.social-btn2{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:12px 18px;text-decoration:none;color:#888;font-size:13px;font-weight:500;transition:border-color 0.2s,color 0.2s;flex:1;justify-content:center}
+.social-btn:hover{color:#833AB4;border-color:#833AB4}
+.social-btn1:hover{color:#1877F2;border-color:#1877F2}
+.social-btn2:hover{color:#EE1D52;border-color:#EE1D52}
+.social-btn svg{flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="index_lukessoundlab.html" class="back-btn">← Home</a>
+</div>
+<div class="wrap">
+
+  <div class="header">
+    <h1>Copertura e Limiti</h1>
+    <p>Luke's Sound Lab · Il tuo evento è adatto al nostro impianto?</p>
+  </div>
+
+  <p class="intro">Una delle domande più frequenti è: <em>"Il vostro impianto è adatto al mio evento?"</em> Ecco una guida chiara e onesta per capire se fa al caso tuo.</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#639922"></div>Adatto</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#EF9F27"></div>Al limite</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A"></div>Non adatto</div>
+  </div>
+
+  <!-- AMBIENTI CHIUSI -->
+  <div class="section">
+    <div class="section-title">Ambienti chiusi</div>
+    <div class="tiers">
+
+      <div class="tier">
+        <div class="tier-indicator ind-green"></div>
+        <div class="tier-body">
+          <div class="tier-range">Fino a 80 persone</div>
+          <div class="tier-desc">L'impianto è perfettamente adatto. Che si tratti di una conferenza, un karaoke o una festa in sala, il suono arriva chiaro e potente in ogni angolo.</div>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-indicator ind-amber"></div>
+        <div class="tier-body">
+          <div class="tier-range">Da 80 a 100 persone</div>
+          <div class="tier-desc">Dipende dal tipo di evento:</div>
+          <div class="tier-sub">
+            <div class="sub-row"><span class="sub-label">Conferenze e cerimonie</span>Nessun problema. La voce parlata non richiede volumi elevati e l'impianto gestisce lo spazio con piena efficacia.</div>
+            <div class="sub-row"><span class="sub-label">Karaoke</span>Generalmente adatto, con qualche attenzione alle dimensioni della sala.</div>
+            <div class="sub-row"><span class="sub-label">Party ad alto volume</span>Siamo al limite. Il risultato dipende molto dalla stanza: soffitti bassi e sala arredata funzionano bene, ambienti grandi e vuoti potrebbero non essere sufficienti.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SPAZI APERTI -->
+  <div class="section">
+    <div class="section-title">Spazi aperti</div>
+    <div class="tiers">
+
+      <div class="tier">
+        <div class="tier-indicator ind-green"></div>
+        <div class="tier-body">
+          <div class="tier-range">Fino a 12 metri</div>
+          <div class="tier-desc">Copertura ottima, sia per la voce che per la musica.</div>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-indicator ind-amber"></div>
+        <div class="tier-body">
+          <div class="tier-range">Da 12 a 15 metri</div>
+          <div class="tier-desc">Il suono arriva, ma con una pressione ridotta rispetto agli ambienti chiusi. Adatto per eventi tranquilli con poco rumore ambientale.</div>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-indicator ind-red"></div>
+        <div class="tier-body">
+          <div class="tier-range">Oltre i 15 metri</div>
+          <div class="tier-desc">All'aperto il suono si disperde rapidamente senza le pareti a sostenerlo. Per distanze superiori ai 15 metri l'impianto non è in grado di garantire una copertura adeguata.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AVVERTENZA -->
+  <div class="warning-box">
+    <div class="warning-title">Tieni presente</div>
+    <div class="warning-text">Il numero di persone non è l'unica variabile. La qualità acustica della stanza conta quanto — o più — della capienza. Soffitti alti, superfici riflettenti (vetro, cemento, piastrelle) e ambienti a pianta irregolare rendono la copertura più difficile. In caso di dubbio, contattaci prima di prenotare.</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <div class="cta-title">Non sei sicuro?</div>
+    <div class="cta-desc">Se il tuo evento è al limite di questi parametri, contattaci prima di prenotare. Descrivi lo spazio — dimensioni, tipo di ambiente, numero di persone — e ti daremo una risposta onesta su cosa possiamo offrirti.</div>
+  </div>
+
+  <div class="social-card">
+    <div class="social-title">Seguici sui social</div>
+    <div class="social-row">
+      <a href="https://www.instagram.com/lukes_sound_lab/" class="social-btn" target="blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578509017839" class="social-btn1" target="blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        Facebook
+      </a>
+      <a href="https://www.tiktok.com/@lukes_sound_lab" class="social-btn2" target="blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+        TikTok
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
